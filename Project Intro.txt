@@ -1,0 +1,4 @@
+Webscraping means extracting content and data from website
+
+I intend to use this technique to get Rainfall data from this website 
+'http://122.15.179.102/ARS/home/rainfall/
