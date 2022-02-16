@@ -2,3 +2,6 @@ Webscraping means extracting content and data from website
 
 I intend to use this technique to get Rainfall data from this website 
 'http://122.15.179.102/ARS/home/rainfall/
+
+Then,
+I have to collect the data and visualize the rainfall data using Matplotlib and seaborne libs
