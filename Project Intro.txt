@@ -5,3 +5,10 @@ I intend to use this technique to get Rainfall data from this website
 
 Then,
 I have to collect the data and visualize the rainfall data using Matplotlib and seaborne libs
+
+Now,
+I have collected the data and displayed.
+
+To proceed Further,
+I've got to push the rainfall data to a pandas dataframe,
+inorder to make it a tabular data and to visualize it.
