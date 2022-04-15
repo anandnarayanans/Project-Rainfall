@@ -13,18 +13,23 @@ def scrapRainfallData():
         formattedDate = datevalue.strftime('%Y-%m-%d')
         Url = f'{SiteUrl}{formattedDate}'
         print(f"Retreiving Rainfalldata for {formattedDate}\n")
-        
-        webScrapping(Url, formattedDate)
-
+        # webScrapping(Url, formattedDate)
+        dataframe = webScrapping(Url,formattedDate)
+        print(dataframe)
 
 def webScrapping(url, date):
 
     r = requests.get(url)
     soup = BeautifulSoup(r.content, 'html.parser')
     data_iterator = iter(soup.find_all('td'))
-
+    newdata = {}    
+    districtList = []
+    actualRainfall = []
+    normalRainfall = []       
+    
     while True:
         try:
+       
             Location = next(data_iterator).text
             ActualMM = next(data_iterator).text
             NormalMM = next(data_iterator).text
@@ -32,11 +37,21 @@ def webScrapping(url, date):
             next(data_iterator).text
             next(data_iterator).text
             next(data_iterator).text
-            print(f'{Location} : {ActualMM} : {NormalMM}')
+            
+            districtList.append(Location) 
+            actualRainfall.append(float(str(ActualMM)))
+            normalRainfall.append(float(str(NormalMM)))
+            # print(f'{Location} : {ActualMM} : {NormalMM}')
 
         except Exception as errordaDei:
             print(f'{errordaDei}')
             break
+
+    newdata['Location'] = districtList
+    newdata['ActualRainfall'] = actualRainfall
+    newdata['NormalRainfall'] = normalRainfall
+    df = pd.DataFrame(newdata,columns=['Location','ActualRainfall','NormalRainfall'])    
+    return df       
 
         
 def main():
