@@ -4,11 +4,11 @@ I intend to use this technique to get Rainfall data from this website
 'http://122.15.179.102/ARS/home/rainfall/
 
 Then,
-I have to collect the data and visualize the rainfall data using Matplotlib and seaborne libs
+I have to collect the data and visualize the rainfall data using Matplotlib and seaborn libs
 
 Now,
 I have collected the data and displayed.
 
 To proceed Further,
-I've got to push the rainfall data to a pandas dataframe,
-inorder to make it a tabular data and to visualize it.
+I've got visualize the data present in pandas dataframe,
+
