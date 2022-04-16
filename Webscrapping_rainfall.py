@@ -1,6 +1,8 @@
 import pandas as pd
 import requests
 from bs4 import BeautifulSoup
+import matplotlib.pyplot as plt
+import seaborn as sns
 
 SiteUrl = 'http://122.15.179.102/ARS/home/rainfall/'
 startDate = '2022-04-01'
@@ -13,9 +15,10 @@ def scrapRainfallData():
         formattedDate = datevalue.strftime('%Y-%m-%d')
         Url = f'{SiteUrl}{formattedDate}'
         print(f"Retreiving Rainfalldata for {formattedDate}\n")
-        # webScrapping(Url, formattedDate)
         dataframe = webScrapping(Url,formattedDate)
         print(dataframe)
+        drawPlot(dataframe,formattedDate)
+
 
 def webScrapping(url, date):
 
@@ -47,12 +50,23 @@ def webScrapping(url, date):
             print(f'{errordaDei}')
             break
 
+
     newdata['Location'] = districtList
     newdata['ActualRainfall'] = actualRainfall
     newdata['NormalRainfall'] = normalRainfall
     df = pd.DataFrame(newdata,columns=['Location','ActualRainfall','NormalRainfall'])    
-    return df       
+    return df 
 
+def drawPlot(df,date):
+    sns.set(rc={'figure.facecolor':'cornflowerblue'})
+    plt.style.use('fast')
+    plt.plot(df.Location,df.NormalRainfall,linewidth=6,linestyle = '-')
+    plt.plot(df.Location,df.ActualRainfall,'r--o',linewidth=4)
+    plt.title(f'RainFall Data in mm for {date}')
+    plt.legend(['Normal', 'Actual'])
+    plt.xticks(rotation = 90.5)
+    plt.show()
+    
         
 def main():
     scrapRainfallData()
