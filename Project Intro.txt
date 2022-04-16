@@ -7,8 +7,9 @@ Then,
 I have to collect the data and visualize the rainfall data using Matplotlib and seaborn libs
 
 Now,
-I have collected the data and displayed.
+I have collected the data and displayed
+and Visualized too.
 
 To proceed Further,
-I've got visualize the data present in pandas dataframe,
+i can connect it with DB of my choice.
 
